@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from "react-redux";
+import { increaseCount, decreaseCount } from "./action/actions";
+import store from "./redux/store";
+function App(props: any) {
+  //event hander
+  const handleIncrease = () => {
+    //dispatch action
+    // props.increaseCount();
 
-function App() {
+    //fire actions
+    store.dispatch(increaseCount());
+  };
+  const handleDecrease = () => {
+    props.decreaseCount();
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Hello World</h1>
+      <div>Count: {props.count}</div>
+      <button onClick={() => handleIncrease()}>Increase Count</button>
+      <button onClick={() => handleDecrease()}>Decrease Count</button>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state: any) => {
+  return {
+    count: state.counter.count,
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    increaseCount: () => dispatch(increaseCount()),
+    decreaseCount: () => dispatch(decreaseCount()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
