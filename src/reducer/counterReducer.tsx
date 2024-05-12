@@ -2,11 +2,14 @@ import { INCREMENT, DECREMENT } from "../action/types";
 
 const INITIAL_STATE = {
   count: 0,
+  name: "Phuc Lam",
 };
 
-const reducers = (state = INITIAL_STATE, action: any) => {
+const counterReducers = (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
     case INCREMENT:
+      //merge state
+      console.log(`I'm running Increment`);
       return {
         ...state,
         count: state.count + 1,
@@ -21,4 +24,4 @@ const reducers = (state = INITIAL_STATE, action: any) => {
   }
 };
 
-export default reducers;
+export default counterReducers;
