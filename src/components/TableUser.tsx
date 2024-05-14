@@ -31,24 +31,32 @@ function TableUser() {
           <tbody>
             {error === true ? (
               <>
-                <div>Something wrong, please try again</div>
+                <div>Something wrong, please try again....</div>
               </>
             ) : (
               <>
-                {users &&
-                  users.length > 0 &&
-                  users.map((item, index) => {
-                    return (
-                      <tr key={`user-${index}`}>
-                        <td>{item.id}</td>
-                        <td>{item.email}</td>
-                        <td>{item.username}</td>
-                        <td>
-                          <button className="btn btn-danger">Delete</button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                {loading === true ? (
+                  <>
+                    <div>Loading data...</div>
+                  </>
+                ) : (
+                  <>
+                    {users &&
+                      users.length > 0 &&
+                      users.map((item, index) => {
+                        return (
+                          <tr key={`user-${index}`}>
+                            <td>{item.id}</td>
+                            <td>{item.email}</td>
+                            <td>{item.username}</td>
+                            <td>
+                              <button className="btn btn-danger">Delete</button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </>
+                )}
               </>
             )}
           </tbody>
