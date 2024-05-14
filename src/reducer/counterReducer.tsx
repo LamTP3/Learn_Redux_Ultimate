@@ -1,6 +1,9 @@
 import { INCREMENT, DECREMENT } from "../action/types";
-
-const INITIAL_STATE = {
+export interface CounterState {
+  count: number;
+  name: string;
+}
+const INITIAL_STATE: CounterState = {
   count: 0,
   name: "Phuc Lam",
 };
@@ -8,7 +11,6 @@ const INITIAL_STATE = {
 const counterReducers = (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
     case INCREMENT:
-      //merge state
       console.log(`I'm running Increment`);
       return {
         ...state,
